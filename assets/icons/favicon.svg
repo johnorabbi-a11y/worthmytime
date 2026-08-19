@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="WorthMyTime">
+  <rect width="64" height="64" rx="14" fill="#17463a"/>
+  <path d="M15 18h7l5 25 6-25h6l6 25 5-25h7l-8 32h-8l-5-21-5 21h-8L15 18Z" fill="#fff"/>
+  <circle cx="48" cy="18" r="5" fill="#d86b35"/>
+</svg>

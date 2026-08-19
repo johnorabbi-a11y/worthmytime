@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://worthmytime.co.uk/sitemap.xml
