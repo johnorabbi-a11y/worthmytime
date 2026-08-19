@@ -4,22 +4,132 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pay Rise Worth Calculator | WorthMyTime</title>
-  <meta name="description" content="A planned calculator for understanding the practical value of a pay rise alongside hours, tax and workload changes.">
+  <meta name="description" content="Use the WorthMyTime Pay Rise Worth Calculator to estimate how much of a pay rise may reach take-home pay after tax, National Insurance, student loans, pension and extra costs.">
   <link rel="canonical" href="https://worthmytime.co.uk/tools/pay-rise-worth/">
   <meta property="og:title" content="Pay Rise Worth Calculator | WorthMyTime">
-  <meta property="og:description" content="A planned WorthMyTime calculator for looking at what a pay rise may really change.">
+  <meta property="og:description" content="Estimate the take-home and hourly value of a pay rise, including deductions and workload changes.">
   <meta property="og:url" content="https://worthmytime.co.uk/tools/pay-rise-worth/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="WorthMyTime">
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://worthmytime.co.uk/" },
+      { "@type": "ListItem", "position": 2, "name": "Pay Rise Worth Calculator", "item": "https://worthmytime.co.uk/tools/pay-rise-worth/" }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="WorthMyTime home"><span class="brand-mark" aria-hidden="true">W</span><span>WorthMyTime</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-line"></span><span class="sr-only">Menu</span></button><nav class="site-nav" id="site-nav" aria-label="Primary navigation"><a href="/tools/true-hourly-rate/">True hourly rate</a><a href="/tools/overtime-worth/">Overtime</a><a href="/tools/compare-jobs/">Compare jobs</a><a href="/methodology/">Methodology</a><a href="/about/">About</a></nav></div></header>
-  <main id="main"><section class="page-hero"><div class="container"><p class="eyebrow">Planned calculator</p><h1>Pay Rise Worth Calculator</h1><p class="hero-lede">A future tool for understanding how a pay rise might translate into take-home pay, hourly value and changed responsibilities.</p></div></section><article class="container content"><div class="status-note"><strong>Status:</strong> This is a planned calculator page.</div><h2>What this tool should consider</h2><ul><li>Current and proposed salary.</li><li>Estimated change in take-home pay.</li><li>Any change in hours, travel or workload.</li><li>Impact on hourly and time-committed rates.</li></ul><h2>Next build step</h2><p>Build a salary-change calculation module that can also support promotion and role-change comparisons.</p></article></main>
+  <header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="WorthMyTime home"><span class="brand-mark" aria-hidden="true">W</span><span>WorthMyTime</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-line"></span><span class="sr-only">Menu</span></button><nav class="site-nav" id="site-nav" aria-label="Primary navigation"><a href="/tools/true-hourly-rate/">True hourly rate</a><a href="/tools/overtime-worth/">Overtime</a><a href="/tools/pay-rise-worth/">Pay rise</a><a href="/tools/compare-jobs/">Compare jobs</a><a href="/methodology/">Methodology</a><a href="/about/">About</a></nav></div></header>
+
+  <main id="main">
+    <section class="page-hero calculator-hero">
+      <div class="container">
+        <p class="eyebrow">Live calculator</p>
+        <h1>Pay Rise Worth Calculator</h1>
+        <p class="hero-lede">How much is a pay rise really worth? Estimate the extra annual and monthly take-home pay, the effect on your hourly rate, and how deductions or extra costs change the practical value.</p>
+        <p class="small-note">Current scope: employees in England, Wales and Northern Ireland for the 2026/27 tax year. This is an estimator, not payroll software.</p>
+      </div>
+    </section>
+
+    <section class="section calculator-section">
+      <div class="container calculator-layout">
+        <form class="calculator-form" data-pay-rise-form>
+          <div class="form-intro"><h2>Enter your current and proposed pay</h2><p>Use annual figures. If your hours or costs would change with the raise, include that too.</p></div>
+          <div class="validation-box" data-validation hidden></div>
+
+          <fieldset>
+            <legend>Current package</legend>
+            <div class="form-grid">
+              <label><span>Current annual salary</span><input name="currentSalary" type="number" min="1" step="100" value="35000" inputmode="decimal" required></label>
+              <label><span>Current expected annual bonus</span><input name="currentBonus" type="number" min="0" step="100" value="0" inputmode="decimal"></label>
+              <label><span>Current actual hours per week</span><input name="currentHours" type="number" min="0.1" max="120" step="0.5" value="40" inputmode="decimal" required></label>
+              <label><span>Weeks worked per year</span><input name="weeksWorked" type="number" min="1" max="52" step="0.5" value="46.4" inputmode="decimal" required></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Proposed package</legend>
+            <div class="form-grid">
+              <label><span>Proposed annual salary</span><input name="proposedSalary" type="number" min="1" step="100" value="40000" inputmode="decimal" required></label>
+              <label><span>Proposed expected annual bonus</span><input name="proposedBonus" type="number" min="0" step="100" value="0" inputmode="decimal"></label>
+              <label><span>Proposed actual hours per week</span><input name="proposedHours" type="number" min="0.1" max="120" step="0.5" value="40" inputmode="decimal" required><small>Increase this if the raise comes with regular extra hours or responsibilities.</small></label>
+              <label><span>Extra unavoidable work costs per week</span><input name="extraWeeklyCosts" type="number" min="0" step="1" value="0" inputmode="decimal"><small>Only include new costs caused by the changed role.</small></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Tax, pension and student loans</legend>
+            <div class="form-grid">
+              <label><span>Employee pension contribution (%)</span><input name="employeePensionPercent" type="number" min="0" max="80" step="0.1" value="5" inputmode="decimal"></label>
+              <label><span>Pension contribution method</span><select name="pensionMethod"><option value="relief-at-source">Relief at source</option><option value="salary-sacrifice">Salary sacrifice</option><option value="none">No employee pension</option></select><small>This first version assumes the same pension percentage before and after the raise.</small></label>
+              <label><span>Student loan plan</span><select name="undergraduateLoanPlan"><option value="none">None</option><option value="plan1">Plan 1</option><option value="plan2">Plan 2</option><option value="plan4">Plan 4</option><option value="plan5">Plan 5</option></select></label>
+              <label class="checkbox-label"><input name="hasPostgraduateLoan" type="checkbox"><span>Also repay a Postgraduate Loan</span></label>
+            </div>
+          </fieldset>
+
+          <div class="form-actions"><button class="button primary" type="submit">Calculate</button><button class="button secondary" type="reset">Reset</button></div>
+          <p class="privacy-note">Privacy note: this static calculator runs in your browser and does not send your pay-rise inputs to WorthMyTime.</p>
+        </form>
+
+        <aside class="results-panel" data-results-panel hidden aria-live="polite">
+          <div class="results-heading"><p class="eyebrow">Your estimated pay-rise value</p><h2>What may actually change</h2><p>These figures compare your current and proposed package.</p></div>
+          <div class="result-card featured"><span>Extra annual take-home</span><strong data-result="extraTakeHome">-</strong><p>Estimated take-home increase after tax, NI, student loans and pension.</p></div>
+          <div class="result-card"><span>Extra monthly take-home</span><strong data-result="monthlyExtraTakeHome">-</strong><p>The estimated monthly change in take-home pay.</p></div>
+          <div class="result-card"><span>Spendable annual increase</span><strong data-result="spendableIncrease">-</strong><p>Extra take-home after new unavoidable weekly work costs.</p></div>
+          <div class="result-card"><span>Net hourly rate change</span><strong data-result="netRateChange">-</strong><p>How the estimated net hourly rate changes if hours change too.</p></div>
+          <div class="result-card"><span>Marginal deduction share</span><strong data-result="marginalDeductionShare">-</strong><p>The share of the gross increase not appearing as extra take-home pay.</p></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section muted" data-results-panel hidden>
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Breakdown</p><h2>Pay-rise calculation details</h2><p>A larger gross salary can also increase Income Tax, NI, pension and student loan deductions.</p></div>
+        <div class="breakdown-grid">
+          <div><span>Gross annual increase</span><strong data-result="grossIncrease">-</strong></div>
+          <div><span>Monthly spendable increase</span><strong data-result="monthlySpendableIncrease">-</strong></div>
+          <div><span>Current estimated take-home</span><strong data-result="currentTakeHome">-</strong></div>
+          <div><span>Proposed estimated take-home</span><strong data-result="proposedTakeHome">-</strong></div>
+          <div><span>Current net hourly rate</span><strong data-result="currentNetRate">-</strong></div>
+          <div><span>Proposed net hourly rate</span><strong data-result="proposedNetRate">-</strong></div>
+          <div><span>Current annual hours</span><strong data-result="currentAnnualHours">-</strong></div>
+          <div><span>Proposed annual hours</span><strong data-result="proposedAnnualHours">-</strong></div>
+          <div><span>Extra Income Tax</span><strong data-result="extraTax">-</strong></div>
+          <div><span>Extra employee NI</span><strong data-result="extraNi">-</strong></div>
+          <div><span>Extra Student Loan deductions</span><strong data-result="extraStudentLoan">-</strong></div>
+          <div><span>Extra employee pension contribution</span><strong data-result="extraPension">-</strong></div>
+          <div><span>Annual extra work costs</span><strong data-result="annualExtraCosts">-</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <article class="container content calculator-content">
+      <h2>How to read the result</h2>
+      <p>This calculator separates the headline gross increase from the estimated take-home increase. It also shows whether your net hourly rate improves if the raise comes with more hours or new unavoidable costs.</p>
+      <h2>Methodology and assumptions</h2>
+      <p>The calculator reuses the WorthMyTime 2026/27 England, Wales and Northern Ireland employment tax estimator. It compares an annualised current-pay estimate with an annualised proposed-pay estimate. It does not model Scottish Income Tax, individual tax codes, taxable benefits, changing pension scheme rules, or every payroll edge case.</p>
+      <p>This first version assumes the same employee pension percentage and student loan status before and after the pay rise. If the raise changes your pension percentage, run the calculator twice with different assumptions.</p>
+      <p>For the wider approach, read the <a href="/methodology/">WorthMyTime methodology</a>. For important decisions, read the <a href="/disclaimer/">disclaimer</a>.</p>
+      <h2>FAQ</h2>
+      <details><summary>Why is my take-home increase lower than the gross raise?</summary><p>Income Tax, National Insurance, student loan repayments and pension contributions can all reduce the amount that reaches take-home pay.</p></details>
+      <details><summary>Should I include extra hours?</summary><p>Yes, if the pay rise comes with regular extra hours or responsibilities. A raise can improve annual pay but leave hourly value flatter than expected.</p></details>
+      <details><summary>Do student loans affect a pay rise?</summary><p>They can. If your income is above the relevant plan threshold, part of the pay rise may increase student loan deductions.</p></details>
+      <details><summary>Is this personalised financial advice?</summary><p>No. It is a general estimator to help you understand trade-offs. It does not tell you whether to accept, reject or negotiate a pay rise.</p></details>
+    </article>
+  </main>
+
   <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="/"><span class="brand-mark" aria-hidden="true">W</span><span>WorthMyTime</span></a><p>Know what your work is really worth.</p></div><nav aria-label="Footer navigation"><h2>Site</h2><a href="/about/">About</a><a href="/methodology/">Methodology</a><a href="/editorial-standards/">Editorial Standards</a></nav><nav aria-label="Legal navigation"><h2>Legal</h2><a href="/privacy/">Privacy</a><a href="/disclaimer/">Disclaimer</a></nav></div><div class="container footer-bottom"><span>&copy; <span data-current-year>2026</span> WorthMyTime.</span><span>Information only. Not financial advice.</span></div></footer>
   <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/calculator-utils.js" defer></script>
+  <script src="/assets/js/uk-tax-2026-27.js" defer></script>
+  <script src="/assets/js/pay-rise-worth.js" defer></script>
 </body>
 </html>
 
