@@ -4,36 +4,402 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>True Hourly Rate Calculator | WorthMyTime</title>
-  <meta name="description" content="A planned WorthMyTime calculator for understanding different hourly views of a UK job beyond headline salary.">
+  <meta name="description" content="Use the WorthMyTime True Hourly Rate Calculator to estimate headline, net, time-committed, spendable and total compensation rates for a UK job.">
   <link rel="canonical" href="https://worthmytime.co.uk/tools/true-hourly-rate/">
   <meta property="og:title" content="True Hourly Rate Calculator | WorthMyTime">
-  <meta property="og:description" content="Planned UK calculator for comparing headline, net, time-committed, spendable and total compensation rates.">
+  <meta property="og:description" content="Estimate what your work is worth per hour after hours, tax, commuting, pension and work-related costs.">
   <meta property="og:url" content="https://worthmytime.co.uk/tools/true-hourly-rate/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="WorthMyTime">
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://worthmytime.co.uk/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "True Hourly Rate Calculator",
+        "item": "https://worthmytime.co.uk/tools/true-hourly-rate/"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a true hourly rate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A true hourly rate is a way to look beyond headline salary by comparing pay with the time and costs involved in doing a job. WorthMyTime shows several rates because different decisions need different measures."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should commuting time count as work time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Commuting time is not normally paid working time, but it is time committed to having that job. The time-committed rate includes commuting so you can see that perspective separately."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should employer pension contributions count as pay?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Employer pension contributions are part of total compensation, but they are not immediate spendable income. The calculator shows them separately in the total compensation rate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How are work costs treated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The spendable work rate subtracts commuting costs and unavoidable work-related costs from estimated take-home pay before dividing by total committed time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the calculator accurate for Scottish taxpayers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This first version estimates Income Tax for England, Wales and Northern Ireland. Scottish Income Tax bands are different and will need a separate implementation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does overtime affect the result?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Overtime can affect the result if you include it in actual weekly hours or expected bonus. A dedicated overtime calculator is planned so overtime can be modelled more precisely."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does student loan repayment reduce my effective hourly rate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Student loan deductions reduce estimated take-home pay, so they affect the net, time-committed and spendable rates shown by this calculator."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="WorthMyTime home"><span class="brand-mark" aria-hidden="true">W</span><span>WorthMyTime</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-line"></span><span class="sr-only">Menu</span></button><nav class="site-nav" id="site-nav" aria-label="Primary navigation"><a href="/tools/true-hourly-rate/">True hourly rate</a><a href="/tools/compare-jobs/">Compare jobs</a><a href="/methodology/">Methodology</a><a href="/about/">About</a></nav></div></header>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="WorthMyTime home">
+        <span class="brand-mark" aria-hidden="true">W</span>
+        <span>WorthMyTime</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-line"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="/tools/true-hourly-rate/">True hourly rate</a>
+        <a href="/tools/overtime-worth/">Overtime</a>
+        <a href="/tools/compare-jobs/">Compare jobs</a>
+        <a href="/methodology/">Methodology</a>
+        <a href="/about/">About</a>
+      </nav>
+    </div>
+  </header>
+
   <main id="main">
-    <section class="page-hero"><div class="container"><p class="eyebrow">Planned calculator</p><h1>True Hourly Rate Calculator</h1><p class="hero-lede">A future calculator for seeing how salary, hours, tax, commuting, pension and work costs affect the practical value of working time.</p></div></section>
-    <article class="container content">
-      <div class="status-note"><strong>Status:</strong> This calculator route is ready, but the calculation engine has intentionally not been built in this foundation stage.</div>
-      <h2>What this tool should cover</h2>
+    <section class="page-hero calculator-hero">
+      <div class="container">
+        <p class="eyebrow">Live calculator</p>
+        <h1>True Hourly Rate Calculator</h1>
+        <p class="hero-lede">What are you really earning per hour? Estimate several useful views of a UK job, including headline salary, take-home pay, commuting time, work costs and employer pension value.</p>
+        <p class="small-note">Current scope: employees in England, Wales and Northern Ireland for the 2026/27 tax year. Scottish Income Tax is not included in this first version.</p>
+      </div>
+    </section>
+
+    <section class="section calculator-section">
+      <div class="container calculator-layout">
+        <form class="calculator-form" data-true-hourly-form>
+          <div class="form-intro">
+            <h2>Enter your job details</h2>
+            <p>Use annual figures where requested. Leave bonus, commute or work costs as zero if they do not apply.</p>
+          </div>
+
+          <div class="validation-box" data-validation hidden></div>
+
+          <fieldset>
+            <legend>Earnings</legend>
+            <div class="form-grid">
+              <label>
+                <span>Annual gross salary</span>
+                <input name="grossSalary" type="number" min="1" step="100" value="35000" inputmode="decimal" required>
+              </label>
+              <label>
+                <span>Expected annual bonus</span>
+                <input name="bonus" type="number" min="0" step="100" value="0" inputmode="decimal">
+              </label>
+              <label>
+                <span>Employer pension contribution (%)</span>
+                <input name="employerPensionPercent" type="number" min="0" max="80" step="0.1" value="3" inputmode="decimal">
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Working time</legend>
+            <div class="form-grid">
+              <label>
+                <span>Contracted hours per week</span>
+                <input name="contractedHours" type="number" min="0.1" max="120" step="0.5" value="37.5" inputmode="decimal" required>
+              </label>
+              <label>
+                <span>Actual hours worked per week</span>
+                <input name="actualHours" type="number" min="0.1" max="120" step="0.5" value="40" inputmode="decimal" required>
+                <small>Include regular unpaid extra hours if they are part of the reality of the job.</small>
+              </label>
+              <label>
+                <span>Working days per week</span>
+                <input name="workingDays" type="number" min="1" max="7" step="0.5" value="5" inputmode="decimal" required>
+              </label>
+              <label>
+                <span>Weeks worked per year</span>
+                <input name="weeksWorked" type="number" min="1" max="52" step="0.5" value="46.4" inputmode="decimal" required>
+                <small>46.4 roughly reflects 52 weeks less 28 days of leave for a 5-day week.</small>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Commute and work costs</legend>
+            <div class="form-grid">
+              <label>
+                <span>Commute time each way (minutes)</span>
+                <input name="commuteMinutesEachWay" type="number" min="0" max="300" step="5" value="30" inputmode="decimal">
+              </label>
+              <label>
+                <span>Commuting days per week</span>
+                <input name="commuteDays" type="number" min="0" max="7" step="0.5" value="3" inputmode="decimal">
+              </label>
+              <label>
+                <span>Commute cost per week</span>
+                <input name="commuteCost" type="number" min="0" step="1" value="45" inputmode="decimal">
+              </label>
+              <label>
+                <span>Other unavoidable work costs per week</span>
+                <input name="otherWorkCosts" type="number" min="0" step="1" value="10" inputmode="decimal">
+                <small>Only include unavoidable work costs, not discretionary lifestyle spending.</small>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Tax, pension and student loans</legend>
+            <div class="form-grid">
+              <label>
+                <span>Employee pension contribution (%)</span>
+                <input name="employeePensionPercent" type="number" min="0" max="80" step="0.1" value="5" inputmode="decimal">
+              </label>
+              <label>
+                <span>Pension contribution method</span>
+                <select name="pensionMethod">
+                  <option value="relief-at-source">Relief at source</option>
+                  <option value="salary-sacrifice">Salary sacrifice</option>
+                  <option value="none">No employee pension</option>
+                </select>
+                <small>Salary sacrifice reduces taxable and NI pay in this estimate. Relief at source assumes basic-rate relief is added by the pension provider.</small>
+              </label>
+              <label>
+                <span>Student loan plan</span>
+                <select name="undergraduateLoanPlan">
+                  <option value="none">None</option>
+                  <option value="plan1">Plan 1</option>
+                  <option value="plan2">Plan 2</option>
+                  <option value="plan4">Plan 4</option>
+                  <option value="plan5">Plan 5</option>
+                </select>
+              </label>
+              <label class="checkbox-label">
+                <input name="hasPostgraduateLoan" type="checkbox">
+                <span>Also repay a Postgraduate Loan</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="form-actions">
+            <button class="button primary" type="submit">Calculate</button>
+            <button class="button secondary" type="reset">Reset</button>
+          </div>
+          <p class="privacy-note">Privacy note: this static calculator runs in your browser. It does not send your salary, pension, student loan or commute inputs to WorthMyTime.</p>
+        </form>
+
+        <aside class="results-panel" data-results-panel hidden aria-live="polite">
+          <div class="results-heading">
+            <p class="eyebrow">Your estimated rates</p>
+            <h2>Five ways to view your job</h2>
+            <p>No single rate is the correct one. Each answers a different question.</p>
+          </div>
+          <div class="result-card featured">
+            <span>Headline hourly equivalent</span>
+            <strong data-result="headlineHourly">-</strong>
+            <p>What does my salary equal per contracted working hour?</p>
+          </div>
+          <div class="result-card">
+            <span>Net work rate</span>
+            <strong data-result="netWorkRate">-</strong>
+            <p>What do I take home for each hour I actually work?</p>
+          </div>
+          <div class="result-card">
+            <span>Time-committed rate</span>
+            <strong data-result="timeCommittedRate">-</strong>
+            <p>What do I take home for each hour of my life committed to work and commuting?</p>
+          </div>
+          <div class="result-card">
+            <span>Spendable work rate</span>
+            <strong data-result="spendableWorkRate">-</strong>
+            <p>What remains per committed hour after unavoidable work-related costs?</p>
+          </div>
+          <div class="result-card">
+            <span>Total compensation rate</span>
+            <strong data-result="totalCompensationRate">-</strong>
+            <p>What are salary, expected bonus and employer pension contribution worth per actual working hour?</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section muted" data-results-panel hidden>
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Breakdown</p>
+          <h2>The figures behind the rates</h2>
+          <p>Employer pension is shown as compensation, not as immediately spendable income.</p>
+        </div>
+        <div class="breakdown-grid">
+          <div><span>Annual gross salary</span><strong data-result="grossSalary">-</strong></div>
+          <div><span>Expected bonus</span><strong data-result="bonus">-</strong></div>
+          <div><span>Gross income used</span><strong data-result="grossIncome">-</strong></div>
+          <div><span>Estimated annual take-home</span><strong data-result="annualTakeHome">-</strong></div>
+          <div><span>Estimated monthly take-home</span><strong data-result="monthlyTakeHome">-</strong></div>
+          <div><span>Annual employee pension contribution</span><strong data-result="employeePension">-</strong></div>
+          <div><span>Estimated Income Tax</span><strong data-result="incomeTax">-</strong></div>
+          <div><span>Estimated employee NI</span><strong data-result="nationalInsurance">-</strong></div>
+          <div><span>Estimated Student Loan deductions</span><strong data-result="studentLoan">-</strong></div>
+          <div><span>Annual commute cost</span><strong data-result="commuteCostAnnual">-</strong></div>
+          <div><span>Annual other work costs</span><strong data-result="otherWorkCostsAnnual">-</strong></div>
+          <div><span>Actual annual working hours</span><strong data-result="actualAnnualHours">-</strong></div>
+          <div><span>Annual commute hours</span><strong data-result="annualCommuteHours">-</strong></div>
+          <div><span>Total annual time committed</span><strong data-result="totalCommittedHours">-</strong></div>
+          <div><span>Estimated employer pension contribution</span><strong data-result="employerPension">-</strong></div>
+          <div><span>Total compensation estimate</span><strong data-result="totalCompensation">-</strong></div>
+          <div><span>Personal Allowance used</span><strong data-result="personalAllowance">-</strong></div>
+          <div><span>Taxable employment income</span><strong data-result="taxableEmploymentIncome">-</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <article class="container content calculator-content">
+      <h2>How to read the results</h2>
+      <p>This calculator separates gross pay, estimated take-home pay, spendable pay after work-related costs, employer-paid compensation, actual working time and commuting time. That is why it shows several rates instead of one misleading true wage.</p>
+
+      <div class="explain-grid">
+        <div><h3>Headline hourly equivalent</h3><p>Gross salary divided by contracted annual working hours. This is a simple salary-to-hours equivalent.</p></div>
+        <div><h3>Net work rate</h3><p>Estimated annual take-home pay divided by actual annual hours worked.</p></div>
+        <div><h3>Time-committed rate</h3><p>Estimated annual take-home pay divided by actual working hours plus commuting time.</p></div>
+        <div><h3>Spendable work rate</h3><p>Estimated annual take-home pay minus annual commute costs and unavoidable work costs, divided by working plus commuting time.</p></div>
+        <div><h3>Total compensation rate</h3><p>Gross salary, expected bonus and estimated employer pension contribution divided by actual annual working hours.</p></div>
+      </div>
+
+      <h2>Worked example</h2>
+      <p>Someone earning GBP 35,000, working 40 actual hours a week for 46.4 weeks, commuting 30 minutes each way for 3 days a week, paying GBP 45 a week to commute and GBP 10 a week in other unavoidable work costs would see different answers for different questions. The headline hourly equivalent is based on contracted hours, while the spendable work rate reflects estimated take-home pay after commute and work costs across both work and commute time.</p>
+
+      <h2>Methodology and assumptions</h2>
+      <p>The tax estimate uses 2026/27 Income Tax for England, Wales and Northern Ireland, annualised Class 1 employee National Insurance, the Personal Allowance taper above GBP 100,000, optional employee pension contributions and optional student loan deductions. It does not implement Scottish Income Tax, tax code adjustments, taxable benefits, childcare, marriage allowance, benefits in kind, bonus timing, director NI, irregular pay-period rounding or every payroll edge case.</p>
       <ul>
-        <li>Headline hourly equivalent from salary and contracted hours.</li>
-        <li>Net hourly rate after relevant deductions.</li>
-        <li>Time-committed rate including commute and required unpaid time.</li>
-        <li>Spendable work rate after work-related costs.</li>
-        <li>Total compensation rate including employer benefits where appropriate.</li>
+        <li>Personal Allowance: GBP 12,570, tapered by GBP 1 for every GBP 2 of adjusted net income above GBP 100,000.</li>
+        <li>Income Tax: 20% basic rate up to GBP 37,700 of taxable income after allowances, 40% higher rate to GBP 125,140, then 45% additional rate.</li>
+        <li>Employee NI: annualised category A estimate using 8% between GBP 12,570 and GBP 50,270, then 2% above GBP 50,270.</li>
+        <li>Student loans: Plan 1 GBP 26,900, Plan 2 GBP 29,385, Plan 4 GBP 33,795, Plan 5 GBP 25,000 at 9%; Postgraduate Loan GBP 21,000 at 6%.</li>
+        <li>Relief at source pension contributions are treated as gross pension contributions with basic-rate relief added by the pension provider. Higher-rate relief is not added to take-home pay here.</li>
+        <li>Salary sacrifice pension contributions reduce taxable and NI pay in this estimator.</li>
       </ul>
-      <h2>Next build step</h2>
-      <p>Add a dedicated calculator module that keeps tax, pension and deduction logic separate from the page presentation.</p>
+      <p>For the broader principle behind these measures, read the <a href="/methodology/">WorthMyTime methodology</a>. For important decisions, also read the <a href="/disclaimer/">disclaimer</a>.</p>
+
+      <h2>FAQ</h2>
+      <details>
+        <summary>What is a true hourly rate?</summary>
+        <p>A true hourly rate is a way to look beyond headline salary by comparing pay with the time and costs involved in doing a job. WorthMyTime shows several rates because different decisions need different measures.</p>
+      </details>
+      <details>
+        <summary>Should commuting time count as work time?</summary>
+        <p>Commuting time is not normally paid working time, but it is time committed to having that job. The time-committed rate includes commuting so you can see that perspective separately.</p>
+      </details>
+      <details>
+        <summary>Should employer pension contributions count as pay?</summary>
+        <p>Employer pension contributions are part of total compensation, but they are not immediate spendable income. The calculator shows them separately in the total compensation rate.</p>
+      </details>
+      <details>
+        <summary>How are work costs treated?</summary>
+        <p>The spendable work rate subtracts commuting costs and unavoidable work-related costs from estimated take-home pay before dividing by total committed time.</p>
+      </details>
+      <details>
+        <summary>Is the calculator accurate for Scottish taxpayers?</summary>
+        <p>No. This first version estimates Income Tax for England, Wales and Northern Ireland. Scottish Income Tax bands are different and will need a separate implementation.</p>
+      </details>
+      <details>
+        <summary>Does overtime affect the result?</summary>
+        <p>Overtime can affect the result if you include it in actual weekly hours or expected bonus. A dedicated overtime calculator is planned so overtime can be modelled more precisely.</p>
+      </details>
+      <details>
+        <summary>Does student loan repayment reduce my effective hourly rate?</summary>
+        <p>Student loan deductions reduce estimated take-home pay, so they affect the net, time-committed and spendable rates shown by this calculator.</p>
+      </details>
     </article>
   </main>
-  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="/"><span class="brand-mark" aria-hidden="true">W</span><span>WorthMyTime</span></a><p>Know what your work is really worth.</p></div><nav aria-label="Footer navigation"><h2>Site</h2><a href="/about/">About</a><a href="/methodology/">Methodology</a><a href="/editorial-standards/">Editorial Standards</a></nav><nav aria-label="Legal navigation"><h2>Legal</h2><a href="/privacy/">Privacy</a><a href="/disclaimer/">Disclaimer</a></nav></div><div class="container footer-bottom"><span>&copy; <span data-current-year>2026</span> WorthMyTime.</span><span>Information only. Not financial advice.</span></div></footer>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand footer-brand" href="/">
+          <span class="brand-mark" aria-hidden="true">W</span>
+          <span>WorthMyTime</span>
+        </a>
+        <p>Know what your work is really worth.</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <h2>Site</h2>
+        <a href="/about/">About</a>
+        <a href="/methodology/">Methodology</a>
+        <a href="/editorial-standards/">Editorial Standards</a>
+      </nav>
+      <nav aria-label="Legal navigation">
+        <h2>Legal</h2>
+        <a href="/privacy/">Privacy</a>
+        <a href="/disclaimer/">Disclaimer</a>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <span>&copy; <span data-current-year>2026</span> WorthMyTime.</span>
+      <span>Information only. Not financial advice.</span>
+    </div>
+  </footer>
   <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/calculator-utils.js" defer></script>
+  <script src="/assets/js/uk-tax-2026-27.js" defer></script>
+  <script src="/assets/js/true-hourly-rate.js" defer></script>
 </body>
 </html>
+
+

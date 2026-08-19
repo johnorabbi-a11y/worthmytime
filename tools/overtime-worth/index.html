@@ -4,21 +4,153 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Overtime Worth Calculator | WorthMyTime</title>
-  <meta name="description" content="A planned WorthMyTime calculator for exploring whether overtime may be worthwhile after tax, time and work-related costs.">
+  <meta name="description" content="Use the WorthMyTime Overtime Worth Calculator to estimate how much overtime may be worth after tax, National Insurance, student loan deductions, pension and extra work costs.">
   <link rel="canonical" href="https://worthmytime.co.uk/tools/overtime-worth/">
   <meta property="og:title" content="Overtime Worth Calculator | WorthMyTime">
-  <meta property="og:description" content="A planned UK calculator for overtime value after deductions, time and costs.">
+  <meta property="og:description" content="Estimate the after-tax value of overtime and what it may be worth per extra hour.">
   <meta property="og:url" content="https://worthmytime.co.uk/tools/overtime-worth/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="WorthMyTime">
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://worthmytime.co.uk/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Overtime Worth Calculator",
+        "item": "https://worthmytime.co.uk/tools/overtime-worth/"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="WorthMyTime home"><span class="brand-mark" aria-hidden="true">W</span><span>WorthMyTime</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-line"></span><span class="sr-only">Menu</span></button><nav class="site-nav" id="site-nav" aria-label="Primary navigation"><a href="/tools/true-hourly-rate/">True hourly rate</a><a href="/tools/compare-jobs/">Compare jobs</a><a href="/methodology/">Methodology</a><a href="/about/">About</a></nav></div></header>
-  <main id="main"><section class="page-hero"><div class="container"><p class="eyebrow">Planned calculator</p><h1>Overtime Worth Calculator</h1><p class="hero-lede">A future tool for weighing extra pay against extra time, deductions, travel and the personal cost of working longer.</p></div></section><article class="container content"><div class="status-note"><strong>Status:</strong> This calculator has not been implemented yet.</div><h2>What this tool should consider</h2><ul><li>Overtime rate and number of extra hours.</li><li>Estimated take-home value after deductions.</li><li>Additional commute, childcare or work-related costs where relevant.</li><li>How the overtime compares with the worker's normal rate.</li></ul><h2>Next build step</h2><p>Add overtime-specific inputs while reusing the shared deduction and rate-result modules planned for the core calculator.</p></article></main>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="WorthMyTime home"><span class="brand-mark" aria-hidden="true">W</span><span>WorthMyTime</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-line"></span><span class="sr-only">Menu</span></button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation"><a href="/tools/true-hourly-rate/">True hourly rate</a><a href="/tools/overtime-worth/">Overtime</a><a href="/tools/compare-jobs/">Compare jobs</a><a href="/methodology/">Methodology</a><a href="/about/">About</a></nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero calculator-hero">
+      <div class="container">
+        <p class="eyebrow">Live calculator</p>
+        <h1>Overtime Worth Calculator</h1>
+        <p class="hero-lede">Is extra work worth the extra time? Estimate the gross and take-home value of regular overtime, then compare it with the extra hours, costs and deductions involved.</p>
+        <p class="small-note">Current scope: employees in England, Wales and Northern Ireland for the 2026/27 tax year. This is an estimator, not payroll software.</p>
+      </div>
+    </section>
+
+    <section class="section calculator-section">
+      <div class="container calculator-layout">
+        <form class="calculator-form" data-overtime-form>
+          <div class="form-intro">
+            <h2>Enter your overtime details</h2>
+            <p>The calculator compares your estimated take-home pay before and after adding regular overtime.</p>
+          </div>
+
+          <div class="validation-box" data-validation hidden></div>
+
+          <fieldset>
+            <legend>Current pay</legend>
+            <div class="form-grid">
+              <label><span>Annual gross salary</span><input name="grossSalary" type="number" min="1" step="100" value="35000" inputmode="decimal" required></label>
+              <label><span>Expected annual bonus excluding overtime</span><input name="bonus" type="number" min="0" step="100" value="0" inputmode="decimal"></label>
+              <label><span>Usual actual hours per week</span><input name="actualHours" type="number" min="0.1" max="120" step="0.5" value="40" inputmode="decimal" required></label>
+              <label><span>Weeks worked per year</span><input name="weeksWorked" type="number" min="1" max="52" step="0.5" value="46.4" inputmode="decimal" required></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Overtime</legend>
+            <div class="form-grid">
+              <label><span>Overtime hours per week</span><input name="overtimeHours" type="number" min="0.1" max="80" step="0.5" value="5" inputmode="decimal" required></label>
+              <label><span>Overtime pay rate per hour</span><input name="overtimeRate" type="number" min="0.01" max="500" step="0.01" value="22" inputmode="decimal" required><small>Use the gross hourly overtime rate before tax and deductions.</small></label>
+              <label><span>Extra travel or waiting time per week (minutes)</span><input name="extraCommuteMinutes" type="number" min="0" step="5" value="0" inputmode="decimal"></label>
+              <label><span>Extra unavoidable overtime costs per week</span><input name="extraCosts" type="number" min="0" step="1" value="0" inputmode="decimal"><small>Only include costs caused by doing the overtime.</small></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Tax, pension and student loans</legend>
+            <div class="form-grid">
+              <label><span>Employee pension contribution (%)</span><input name="employeePensionPercent" type="number" min="0" max="80" step="0.1" value="5" inputmode="decimal"></label>
+              <label><span>Pension contribution method</span><select name="pensionMethod"><option value="relief-at-source">Relief at source</option><option value="salary-sacrifice">Salary sacrifice</option><option value="none">No employee pension</option></select><small>This first version assumes the same pension percentage applies to overtime too.</small></label>
+              <label><span>Student loan plan</span><select name="undergraduateLoanPlan"><option value="none">None</option><option value="plan1">Plan 1</option><option value="plan2">Plan 2</option><option value="plan4">Plan 4</option><option value="plan5">Plan 5</option></select></label>
+              <label class="checkbox-label"><input name="hasPostgraduateLoan" type="checkbox"><span>Also repay a Postgraduate Loan</span></label>
+            </div>
+          </fieldset>
+
+          <div class="form-actions">
+            <button class="button primary" type="submit">Calculate</button>
+            <button class="button secondary" type="reset">Reset</button>
+          </div>
+          <p class="privacy-note">Privacy note: this static calculator runs in your browser and does not send your pay or overtime inputs to WorthMyTime.</p>
+        </form>
+
+        <aside class="results-panel" data-results-panel hidden aria-live="polite">
+          <div class="results-heading"><p class="eyebrow">Your estimated overtime value</p><h2>What the extra hours may be worth</h2><p>These figures compare your estimated position with and without overtime.</p></div>
+          <div class="result-card featured"><span>Extra take-home pay</span><strong data-result="extraTakeHome">-</strong><p>Estimated annual take-home increase from the overtime.</p></div>
+          <div class="result-card"><span>Net overtime rate</span><strong data-result="netOvertimeRate">-</strong><p>Extra take-home pay divided by overtime hours.</p></div>
+          <div class="result-card"><span>Time-committed overtime rate</span><strong data-result="timeCommittedRate">-</strong><p>Extra take-home pay divided by overtime plus extra travel or waiting time.</p></div>
+          <div class="result-card"><span>Spendable overtime rate</span><strong data-result="spendableOvertimeRate">-</strong><p>Extra take-home pay after extra costs, divided by committed overtime time.</p></div>
+          <div class="result-card"><span>Estimated deduction share</span><strong data-result="deductionShare">-</strong><p>The share of gross overtime not appearing as extra take-home pay.</p></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section muted" data-results-panel hidden>
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Breakdown</p><h2>Overtime calculation details</h2><p>Regular overtime can push extra pay through higher tax, NI, student loan or pension deductions.</p></div>
+        <div class="breakdown-grid">
+          <div><span>Annual gross overtime</span><strong data-result="grossOvertime">-</strong></div>
+          <div><span>Monthly extra take-home</span><strong data-result="monthlyExtraTakeHome">-</strong></div>
+          <div><span>Annual overtime hours</span><strong data-result="annualOvertimeHours">-</strong></div>
+          <div><span>Extra committed time</span><strong data-result="extraCommuteHours">-</strong></div>
+          <div><span>Extra annual costs</span><strong data-result="extraCostsAnnual">-</strong></div>
+          <div><span>Extra Income Tax</span><strong data-result="extraTax">-</strong></div>
+          <div><span>Extra employee NI</span><strong data-result="extraNi">-</strong></div>
+          <div><span>Extra Student Loan deductions</span><strong data-result="extraStudentLoan">-</strong></div>
+          <div><span>Extra employee pension contribution</span><strong data-result="extraPension">-</strong></div>
+          <div><span>Base estimated take-home</span><strong data-result="baseTakeHome">-</strong></div>
+          <div><span>Take-home with overtime</span><strong data-result="withOvertimeTakeHome">-</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <article class="container content calculator-content">
+      <h2>How to read the result</h2>
+      <p>The calculator does not say whether overtime is objectively worth it. It shows several views: gross overtime, extra take-home pay, the net rate per overtime hour, the rate after extra committed time, and the rate after extra unavoidable costs.</p>
+      <h2>Methodology and assumptions</h2>
+      <p>This calculator reuses the WorthMyTime 2026/27 England, Wales and Northern Ireland employment tax estimator. It compares an annualised base-pay estimate with an annualised base-plus-overtime estimate. It does not model every payroll timing or tax-code detail, and Scottish Income Tax is not included yet.</p>
+      <p>This first version assumes the selected employee pension percentage applies to overtime as well. If your pension scheme treats overtime differently, adjust the pension percentage or treat the output as a rougher estimate.</p>
+      <p>For the wider approach, read the <a href="/methodology/">WorthMyTime methodology</a>. For important decisions, read the <a href="/disclaimer/">disclaimer</a>.</p>
+      <h2>FAQ</h2>
+      <details><summary>Why is my net overtime rate lower than my overtime rate?</summary><p>Gross overtime can be reduced by Income Tax, National Insurance, student loan deductions and pension contributions before it reaches take-home pay.</p></details>
+      <details><summary>Should I include extra travel time?</summary><p>If overtime means staying late, making an extra journey or waiting around unpaid, including that time can show a more realistic time-committed rate.</p></details>
+      <details><summary>Does overtime affect student loan repayments?</summary><p>It can. Student loan deductions are based on income above the relevant threshold, so extra overtime income may increase deductions.</p></details>
+      <details><summary>Is this accurate for every payslip?</summary><p>No. It is an annualised estimator. Payroll timing, tax codes, scheme rules and employer treatment of overtime can change exact payslip results.</p></details>
+    </article>
+  </main>
+
   <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="/"><span class="brand-mark" aria-hidden="true">W</span><span>WorthMyTime</span></a><p>Know what your work is really worth.</p></div><nav aria-label="Footer navigation"><h2>Site</h2><a href="/about/">About</a><a href="/methodology/">Methodology</a><a href="/editorial-standards/">Editorial Standards</a></nav><nav aria-label="Legal navigation"><h2>Legal</h2><a href="/privacy/">Privacy</a><a href="/disclaimer/">Disclaimer</a></nav></div><div class="container footer-bottom"><span>&copy; <span data-current-year>2026</span> WorthMyTime.</span><span>Information only. Not financial advice.</span></div></footer>
   <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/calculator-utils.js" defer></script>
+  <script src="/assets/js/uk-tax-2026-27.js" defer></script>
+  <script src="/assets/js/overtime-worth.js" defer></script>
 </body>
 </html>
+
