@@ -676,7 +676,7 @@ p {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: minmax(240px, 1.4fr) repeat(2, minmax(160px, 0.5fr));
+  grid-template-columns: minmax(240px, 1.4fr) repeat(3, minmax(150px, 0.5fr));
   gap: 32px;
 }
 
@@ -811,3 +811,4 @@ p {
     padding: 52px 0;
   }
 }
+
