@@ -4,24 +4,74 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Reduced Hours Calculator | WorthMyTime</title>
-  <meta name="description" content="A planned calculator for exploring how reduced working hours could affect income, time and work value.">
+  <meta name="description" content="Use the WorthMyTime Reduced Hours Calculator to estimate how cutting working hours could affect take-home pay, time gained, hourly value and work-related costs.">
   <link rel="canonical" href="https://worthmytime.co.uk/tools/reduced-hours/">
   <meta property="og:title" content="Reduced Hours Calculator | WorthMyTime">
-  <meta property="og:description" content="A planned UK calculator for income and time changes when reducing working hours.">
+  <meta property="og:description" content="Estimate the take-home pay trade-off and time gained from reducing working hours.">
   <meta property="og:url" content="https://worthmytime.co.uk/tools/reduced-hours/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="WorthMyTime">
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://worthmytime.co.uk/"},{"@type":"ListItem","position":2,"name":"Reduced Hours Calculator","item":"https://worthmytime.co.uk/tools/reduced-hours/"}]}</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="WorthMyTime home"><span class="brand-mark" aria-hidden="true">W</span><span>WorthMyTime</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-line"></span><span class="sr-only">Menu</span></button><nav class="site-nav" id="site-nav" aria-label="Primary navigation"><a href="/tools/true-hourly-rate/">True hourly rate</a><a href="/tools/overtime-worth/">Overtime</a><a href="/tools/pay-rise-worth/">Pay rise</a><a href="/tools/compare-jobs/">Compare jobs</a><a href="/methodology/">Methodology</a><a href="/about/">About</a></nav></div></header>
-  <main id="main"><section class="page-hero"><div class="container"><p class="eyebrow">Planned calculator</p><h1>Reduced Hours Calculator</h1><p class="hero-lede">A future tool for exploring the trade-off between lower working hours, take-home pay and time gained.</p></div></section><article class="container content"><div class="status-note"><strong>Status:</strong> This route is ready for a future calculator.</div><h2>What this tool should consider</h2><ul><li>Current hours and proposed hours.</li><li>Estimated income change.</li><li>Holiday, pension and benefit implications where relevant.</li><li>The amount of time gained compared with the income change.</li></ul><h2>Next build step</h2><p>Add a reduced-hours model that reuses shared pay-frequency, working-pattern and deduction assumptions.</p></article></main>
+  <header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="WorthMyTime home"><span class="brand-mark" aria-hidden="true">W</span><span>WorthMyTime</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-line"></span><span class="sr-only">Menu</span></button><nav class="site-nav" id="site-nav" aria-label="Primary navigation"><a href="/tools/true-hourly-rate/">True hourly rate</a><a href="/tools/overtime-worth/">Overtime</a><a href="/tools/pay-rise-worth/">Pay rise</a><a href="/tools/reduced-hours/">Reduced hours</a><a href="/tools/compare-jobs/">Compare jobs</a><a href="/methodology/">Methodology</a><a href="/about/">About</a></nav></div></header>
+
+  <main id="main">
+    <section class="page-hero calculator-hero"><div class="container"><p class="eyebrow">Live calculator</p><h1>Reduced Hours Calculator</h1><p class="hero-lede">What would you give up, and what time would you get back? Estimate how reducing working hours could change take-home pay, spendable income and hourly value.</p><p class="small-note">Current scope: employees in England, Wales and Northern Ireland for the 2026/27 tax year. This is an estimator, not payroll software.</p></div></section>
+
+    <section class="section calculator-section"><div class="container calculator-layout">
+      <form class="calculator-form" data-reduced-hours-form>
+        <div class="form-intro"><h2>Compare current and reduced hours</h2><p>Use annual salary figures and actual weekly hours. Add commute or work-cost changes if reduced hours would change them.</p></div>
+        <div class="validation-box" data-validation hidden></div>
+        <fieldset><legend>Current role</legend><div class="form-grid">
+          <label><span>Current annual salary</span><input name="currentSalary" type="number" min="1" step="100" value="40000" inputmode="decimal" required></label>
+          <label><span>Current expected annual bonus</span><input name="currentBonus" type="number" min="0" step="100" value="0" inputmode="decimal"></label>
+          <label><span>Current actual hours per week</span><input name="currentHours" type="number" min="0.1" max="120" step="0.5" value="40" inputmode="decimal" required></label>
+          <label><span>Weeks worked per year</span><input name="weeksWorked" type="number" min="1" max="52" step="0.5" value="46.4" inputmode="decimal" required></label>
+          <label><span>Current commute time per week (minutes)</span><input name="currentCommuteMinutes" type="number" min="0" step="5" value="300" inputmode="decimal"></label>
+          <label><span>Current commute and work costs per week</span><input name="currentCosts" type="number" min="0" step="1" value="55" inputmode="decimal"></label>
+        </div></fieldset>
+        <fieldset><legend>Reduced-hours role</legend><div class="form-grid">
+          <label><span>Proposed annual salary</span><input name="proposedSalary" type="number" min="1" step="100" value="32000" inputmode="decimal" required><small>Use pro-rata salary or the custom salary offered.</small></label>
+          <label><span>Proposed expected annual bonus</span><input name="proposedBonus" type="number" min="0" step="100" value="0" inputmode="decimal"></label>
+          <label><span>Proposed actual hours per week</span><input name="proposedHours" type="number" min="0.1" max="120" step="0.5" value="32" inputmode="decimal" required></label>
+          <label><span>Proposed commute time per week (minutes)</span><input name="proposedCommuteMinutes" type="number" min="0" step="5" value="240" inputmode="decimal"></label>
+          <label><span>Proposed commute and work costs per week</span><input name="proposedCosts" type="number" min="0" step="1" value="44" inputmode="decimal"></label>
+        </div></fieldset>
+        <fieldset><legend>Tax, pension and student loans</legend><div class="form-grid">
+          <label><span>Employee pension contribution (%)</span><input name="employeePensionPercent" type="number" min="0" max="80" step="0.1" value="5" inputmode="decimal"></label>
+          <label><span>Pension contribution method</span><select name="pensionMethod"><option value="relief-at-source">Relief at source</option><option value="salary-sacrifice">Salary sacrifice</option><option value="none">No employee pension</option></select><small>This first version assumes the same pension percentage before and after.</small></label>
+          <label><span>Student loan plan</span><select name="undergraduateLoanPlan"><option value="none">None</option><option value="plan1">Plan 1</option><option value="plan2">Plan 2</option><option value="plan4">Plan 4</option><option value="plan5">Plan 5</option></select></label>
+          <label class="checkbox-label"><input name="hasPostgraduateLoan" type="checkbox"><span>Also repay a Postgraduate Loan</span></label>
+        </div></fieldset>
+        <div class="form-actions"><button class="button primary" type="submit">Calculate</button><button class="button secondary" type="reset">Reset</button></div>
+        <p class="privacy-note">Privacy note: this static calculator runs in your browser and does not send your salary or hours inputs to WorthMyTime.</p>
+      </form>
+
+      <aside class="results-panel" data-results-panel hidden aria-live="polite"><div class="results-heading"><p class="eyebrow">Your reduced-hours trade-off</p><h2>Money given up, time gained</h2><p>These results separate take-home pay, costs and time.</p></div>
+        <div class="result-card featured"><span>Annual take-home given up</span><strong data-result="takeHomeGivenUp">-</strong><p>Estimated annual take-home reduction after deductions.</p></div>
+        <div class="result-card"><span>Monthly take-home given up</span><strong data-result="monthlyTakeHomeGivenUp">-</strong><p>The estimated monthly reduction in take-home pay.</p></div>
+        <div class="result-card"><span>Total annual time gained</span><strong data-result="totalHoursGained">-</strong><p>Working time plus commute time gained.</p></div>
+        <div class="result-card"><span>Spendable cost per hour gained</span><strong data-result="costPerHourGained">-</strong><p>Spendable income given up per hour of time gained.</p></div>
+        <div class="result-card"><span>Weekly hours gained</span><strong data-result="weeklyHoursGained">-</strong><p>Reduction in actual weekly working hours.</p></div>
+      </aside>
+    </div></section>
+
+    <section class="section muted" data-results-panel hidden><div class="container"><div class="section-heading"><p class="eyebrow">Breakdown</p><h2>Reduced-hours calculation details</h2><p>Lower gross pay may also lower tax, NI, student loan and pension deductions, so the take-home reduction is not always the same as the gross reduction.</p></div><div class="breakdown-grid">
+      <div><span>Gross annual income given up</span><strong data-result="grossGivenUp">-</strong></div><div><span>Spendable annual income given up</span><strong data-result="spendableGivenUp">-</strong></div><div><span>Annual cost saving</span><strong data-result="annualCostSaving">-</strong></div><div><span>Current take-home</span><strong data-result="currentTakeHome">-</strong></div><div><span>Proposed take-home</span><strong data-result="proposedTakeHome">-</strong></div><div><span>Current net hourly rate</span><strong data-result="currentNetRate">-</strong></div><div><span>Proposed net hourly rate</span><strong data-result="proposedNetRate">-</strong></div><div><span>Current committed rate</span><strong data-result="currentCommittedRate">-</strong></div><div><span>Proposed committed rate</span><strong data-result="proposedCommittedRate">-</strong></div><div><span>Annual work hours gained</span><strong data-result="workHoursGained">-</strong></div><div><span>Annual commute hours gained</span><strong data-result="commuteHoursGained">-</strong></div><div><span>Tax and deduction cushion</span><strong data-result="deductionCushion">-</strong></div><div><span>Income Tax saving</span><strong data-result="taxSaving">-</strong></div><div><span>Employee NI saving</span><strong data-result="niSaving">-</strong></div><div><span>Student Loan saving</span><strong data-result="loanSaving">-</strong></div><div><span>Pension contribution reduction</span><strong data-result="pensionReduction">-</strong></div>
+    </div></div></section>
+
+    <article class="container content calculator-content"><h2>How to read the result</h2><p>This calculator does not decide whether reduced hours are worth it. It shows the money trade-off, the time gained and how hourly value changes when work time, commuting and unavoidable costs move together.</p><h2>Methodology and assumptions</h2><p>The calculator reuses the WorthMyTime 2026/27 England, Wales and Northern Ireland employment tax estimator. It compares an annualised current-pay estimate with an annualised reduced-hours estimate. It does not model Scottish Income Tax, individual tax codes, benefits in kind, childcare, changing pension scheme rules or every payroll edge case.</p><p>For the wider approach, read the <a href="/methodology/">WorthMyTime methodology</a>. For important decisions, read the <a href="/disclaimer/">disclaimer</a>.</p><h2>FAQ</h2><details><summary>Is reducing hours always a pro-rata salary cut?</summary><p>No. Some employers use a strict pro-rata salary, while others negotiate custom arrangements. Enter the actual proposed salary if you have one.</p></details><details><summary>Why is the take-home reduction smaller than the gross reduction?</summary><p>Lower salary can reduce Income Tax, National Insurance, student loan deductions and pension contributions, so the take-home change can be smaller than the headline salary cut.</p></details><details><summary>Should commuting count?</summary><p>If fewer hours also means fewer journeys or less travel time, including commute changes gives a fuller time-committed view.</p></details><details><summary>Is this financial advice?</summary><p>No. It is a general estimator to help you understand trade-offs, not a recommendation to change your working pattern.</p></details></article>
+  </main>
+
   <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="/"><span class="brand-mark" aria-hidden="true">W</span><span>WorthMyTime</span></a><p>Know what your work is really worth.</p></div><nav aria-label="Footer navigation"><h2>Site</h2><a href="/about/">About</a><a href="/methodology/">Methodology</a><a href="/editorial-standards/">Editorial Standards</a></nav><nav aria-label="Legal navigation"><h2>Legal</h2><a href="/privacy/">Privacy</a><a href="/disclaimer/">Disclaimer</a></nav><nav aria-label="Related tools"><h2>Related tools</h2><a href="https://aftertaxtool.com/">AfterTaxTool</a><a href="https://creditroadmap.co.uk/">Credit Roadmap</a></nav></div><div class="container footer-bottom"><span>&copy; <span data-current-year>2026</span> WorthMyTime.</span><span>Information only. Not financial advice.</span></div></footer>
   <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/calculator-utils.js" defer></script>
+  <script src="/assets/js/uk-tax-2026-27.js" defer></script>
+  <script src="/assets/js/reduced-hours.js" defer></script>
 </body>
 </html>
-
-
 
